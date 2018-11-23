@@ -1,5 +1,5 @@
 import { compose } from 'redux';
-import { queue, connected, onlyIf } from 'handy-thunks';
+import { queue, connected, onlyIf, fallback, voidThunk } from 'handy-thunks';
 import { withLoading } from '../Loader';
 import { loadUser, preloadUserAvatar, setActive } from '../UserProfile';
 import { LOADING } from '../constants';
@@ -11,15 +11,12 @@ const ifLoginValid = compose(
   withLoading(LOADING.USERS),
 );
 
+const ignoreErrors = fallback(voidThunk);
+
 export const loadUserProfile = ifLoginValid(
   queue(
     setActive,
     loadUser,
-    preloadUserAvatar
+    ignoreErrors(preloadUserAvatar)
   )
 );
-
-// TODO: resolve issue:
-//   On failed loading the error message:
-//   "Uncaught (in promise) Error: Couldn't preload image by url undefined."
-//   is printed to console
