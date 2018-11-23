@@ -7,9 +7,13 @@ export const loadUserProfile = login => async dispatch => {
     start(LOADING.USERS)
   );
 
-  await dispatch(
-    loadUser(login)
-  );
+  try {
+    await dispatch(
+      loadUser(login)
+    );
+  } catch (err) {
+    // do nothing here -- loadUser has already saved an error.
+  }
 
   dispatch(
     end(LOADING.USERS)
