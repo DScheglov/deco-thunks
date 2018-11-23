@@ -1,13 +1,14 @@
 import { compose } from 'redux';
-import { queue, connected } from 'handy-thunks';
+import { queue, connected, onlyIf } from 'handy-thunks';
 import { withLoading } from '../Loader';
 import { loadUser, preloadUserAvatar, setActive } from '../UserProfile';
 import { LOADING } from '../constants';
 import { getEditingLogin } from './store';
 
 const enhance = compose(
-  withLoading(LOADING.USERS),
   connected(getEditingLogin),
+  onlyIf(login => login),
+  withLoading(LOADING.USERS),
 );
 
 export const loadUserProfile = enhance(

@@ -7,6 +7,8 @@ export const loadUserProfile = () => async (dispatch, getState) => {
   const state = getState();
   const login = getEditingLogin(state);
 
+  if (!login) return;
+
   dispatch(
     start(LOADING.USERS)
   );
