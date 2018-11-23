@@ -33,3 +33,7 @@ export const getUserByLogin = (state, login = state.users.active) => (
 );
 
 export const getActiveUserLogin = state => state.users.active;
+
+export const loginOfNewUser = (state, login) => (
+  getUserByLogin(state, login) == null ? login : null
+);
