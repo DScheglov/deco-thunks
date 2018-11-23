@@ -1,7 +1,11 @@
+import { queue } from 'handy-thunks';
 import { withLoading } from '../Loader';
-import { loadUser } from '../UserProfile';
+import { loadUser, preloadUserAvatar } from '../UserProfile';
 import { LOADING } from '../constants';
 
 export const loadUserProfile = withLoading(LOADING.USERS)(
-  loadUser
+  queue(
+    loadUser,
+    preloadUserAvatar
+  )
 );
