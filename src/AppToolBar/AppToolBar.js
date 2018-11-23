@@ -1,15 +1,11 @@
 import React from 'react';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
-
-import { loadUserProfile } from './thunks';
 
 import LoginInput from './LoginInput';
 import { prevent } from '../utils/handlers';
 
 
-const AppToolBar = ({ loadUserProfile }) => (
-  <form className="card--fixed_width" onSubmit={loadUserProfile}>
+const AppToolBar = () => (
+  <form className="card--fixed_width" onSubmit={prevent}>
     <div className="form-group row">
       <div className="col-sm">
         <LoginInput />
@@ -18,8 +14,5 @@ const AppToolBar = ({ loadUserProfile }) => (
   </form>
 );
 
-const actions = {
-  loadUserProfile: compose(loadUserProfile, prevent),
-};
 
-export default connect(null, actions)(AppToolBar);
+export default AppToolBar;

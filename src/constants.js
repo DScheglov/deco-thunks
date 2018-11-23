@@ -13,3 +13,5 @@ export const loggerDefaults = {
   shouldCollapse: name => name === 'payload',
   collapseStringsAfterLength: 60,
 };
+
+export const DELAY_BEFORE_REQUEST = 1000;
