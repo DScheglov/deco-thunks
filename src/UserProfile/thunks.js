@@ -1,3 +1,4 @@
+import { connected } from 'handy-thunks';
 import api from '../utils/api';
 import { save, read, getUserByLogin } from './store';
 import { preloadImage } from '../utils/preload-image';
@@ -12,13 +13,8 @@ export const loadUser = login => dispatch =>
     .then(dispatch)
 ;
 
-export const preloadUserAvatar = login => async (dispatch, getState) => {
-  const state = getState();
-  const user = getUserByLogin(state, login);
-  
-  if (user == null) {
-    return null;
-  }
-
-  return preloadImage(user.avatarUrl);
-};
+export const preloadUserAvatar = connected(getUserByLogin)(
+  user => () => user
+    ? preloadImage(user.avatarUrl)
+    : Promise.resolve()
+);
