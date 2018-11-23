@@ -1,11 +1,24 @@
-import { queue } from 'handy-thunks';
+import { compose } from 'redux';
+import { queue, connected } from 'handy-thunks';
 import { withLoading } from '../Loader';
-import { loadUser, preloadUserAvatar } from '../UserProfile';
+import { loadUser, preloadUserAvatar, setActive } from '../UserProfile';
 import { LOADING } from '../constants';
+import { getEditingLogin } from './store';
 
-export const loadUserProfile = withLoading(LOADING.USERS)(
+const enhance = compose(
+  withLoading(LOADING.USERS),
+  connected(getEditingLogin),
+);
+
+export const loadUserProfile = enhance(
   queue(
+    setActive,
     loadUser,
     preloadUserAvatar
   )
 );
+
+// TODO: resolve issue:
+//   On failed loading the error message:
+//   "Uncaught (in promise) Error: Couldn't preload image by url undefined."
+//   is printed to console

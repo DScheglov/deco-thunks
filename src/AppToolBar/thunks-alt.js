@@ -1,10 +1,18 @@
 import { start, end } from '../Loader';
-import { loadUser, preloadUserAvatar } from '../UserProfile';
+import { loadUser, preloadUserAvatar, setActive } from '../UserProfile';
 import { LOADING } from '../constants';
+import { getEditingLogin } from './store';
 
-export const loadUserProfile = login => async dispatch => {
+export const loadUserProfile = () => async (dispatch, getState) => {
+  const state = getState();
+  const login = getEditingLogin(state);
+
   dispatch(
     start(LOADING.USERS)
+  );
+
+  dispatch(
+    setActive(login)
   );
 
   try {

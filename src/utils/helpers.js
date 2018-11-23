@@ -12,4 +12,6 @@ export const exclude = (list, item) => {
   );
 };
 
-export const packTo = field => value => ({ [field]: value });
+export const updateFieldWithPayload = field => (state, { payload }) => ({
+  ...state, [field]: payload,
+});

@@ -1,5 +1,3 @@
-export const userName = 'DScheglov';
-
 export const LOADING = {
   USERS: 'USERS',
 };

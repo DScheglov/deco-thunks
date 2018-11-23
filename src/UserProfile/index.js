@@ -1,6 +1,6 @@
 import * as Loader from '../Loader';
 import UserProfile from './UserProfile';
-import users, { save } from './store';
+import users, { save, setActive } from './store';
 import { loadUser, preloadUserAvatar } from './thunks';
 
 export const reducers = {
@@ -9,4 +9,4 @@ export const reducers = {
 };
 
 export default UserProfile;
-export { save, loadUser, preloadUserAvatar };
+export { save, setActive, loadUser, preloadUserAvatar };

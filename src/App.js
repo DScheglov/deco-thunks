@@ -3,14 +3,13 @@ import UserProfile from './UserProfile';
 import AppToolBar from './AppToolBar';
 import Logger from './ActionsLogger';
 
-import { userName } from './constants';
 
 const App = () => (
   <div className="container">
     <div className="row">
       <div className="col-md-4">
-        <AppToolBar login={userName} />
-        <UserProfile login={userName} />
+        <AppToolBar />
+        <UserProfile />
       </div>
       <div className="col-md-8">
         <Logger />
