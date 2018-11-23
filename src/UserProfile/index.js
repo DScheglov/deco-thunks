@@ -1,7 +1,7 @@
 import * as Loader from '../Loader';
 import UserProfile from './UserProfile';
 import users, { save } from './store';
-import { loadUser } from './thunks';
+import { loadUser, preloadUserAvatar } from './thunks';
 
 export const reducers = {
   users,
@@ -9,4 +9,4 @@ export const reducers = {
 };
 
 export default UserProfile;
-export { save, loadUser };
+export { save, loadUser, preloadUserAvatar };

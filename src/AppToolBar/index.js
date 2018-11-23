@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadUserProfile } from './thunks';
+import { loadUserProfile } from './thunks-alt';
 
 import BtnLoad from './BtnLoad';
 

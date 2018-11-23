@@ -1,5 +1,5 @@
 import { start, end } from '../Loader';
-import { loadUser } from '../UserProfile';
+import { loadUser, preloadUserAvatar } from '../UserProfile';
 import { LOADING } from '../constants';
 
 export const loadUserProfile = login => async dispatch => {
@@ -11,8 +11,14 @@ export const loadUserProfile = login => async dispatch => {
     await dispatch(
       loadUser(login)
     );
+
+    await dispatch(
+      preloadUserAvatar(login)
+    );
   } catch (err) {
-    // do nothing here -- loadUser has already saved an error.
+    // do nothing here
+    //   -- loadUser has already saved an error.
+    //   -- just ignoring preloadUserAvatar exceptions
   }
 
   dispatch(

@@ -1,5 +1,6 @@
 import api from '../utils/api';
-import { save, read } from './store';
+import { save, read, getUserByLogin } from './store';
+import { preloadImage } from '../utils/preload-image';
 
 
 export const loadUser = login => dispatch =>
@@ -10,3 +11,14 @@ export const loadUser = login => dispatch =>
     .then(save)
     .then(dispatch)
 ;
+
+export const preloadUserAvatar = login => async (dispatch, getState) => {
+  const state = getState();
+  const user = getUserByLogin(state, login);
+  
+  if (user == null) {
+    return null;
+  }
+
+  return preloadImage(user.avatarUrl);
+};
