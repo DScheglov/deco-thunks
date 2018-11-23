@@ -9,7 +9,7 @@
     "lint": "eslint ./src"
   },
   "dependencies": {
-    "handy-thunks": "0.1.2",
+    "handy-thunks": "latest",
     "react": "16.6.1",
     "react-dom": "16.6.1",
     "react-json-view": "1.19.1",
