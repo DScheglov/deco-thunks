@@ -5,13 +5,13 @@ import { loadUser, preloadUserAvatar, setActive } from '../UserProfile';
 import { LOADING } from '../constants';
 import { getEditingLogin } from './store';
 
-const enhance = compose(
+const ifLoginValid = compose(
   connected(getEditingLogin),
   onlyIf(login => login),
   withLoading(LOADING.USERS),
 );
 
-export const loadUserProfile = enhance(
+export const loadUserProfile = ifLoginValid(
   queue(
     setActive,
     loadUser,
